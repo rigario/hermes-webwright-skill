@@ -57,6 +57,7 @@ Start a new Hermes session after installing so the skill loader sees it.
 In the Hermes environment where the agent runs:
 
 ```bash
+python -m pip install -r requirements.txt
 python -c "import playwright; print('playwright ok')"
 playwright install firefox
 ```
@@ -69,6 +70,7 @@ Firefox is the default recommendation because some protected sites reject Playwr
 .
 ├── README.md
 ├── LICENSE
+├── requirements.txt
 ├── webwright/
 │   ├── SKILL.md
 │   └── references/
