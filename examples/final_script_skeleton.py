@@ -18,8 +18,7 @@ def log(step: int, message: str) -> None:
     line = f"step {step} action: {message}"
     print(line)
     with LOG.open('a') as f:
-        f.write(line + '
-')
+        f.write(line + '\n')
 
 
 async def main() -> None:

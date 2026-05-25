@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import py_compile
 import re
 from pathlib import Path
 
@@ -19,6 +20,11 @@ REQUIRED_SECTIONS = [
     '## Workflow',
     '## Common Pitfalls',
     '## Verification Checklist',
+]
+PYTHON_FILES = [
+    ROOT / 'scripts/validate_skill.py',
+    ROOT / 'examples/lightweight_browse.py',
+    ROOT / 'examples/final_script_skeleton.py',
 ]
 
 
@@ -40,6 +46,8 @@ def main() -> None:
     assert body.strip(), 'body must be non-empty'
     for section in REQUIRED_SECTIONS:
         assert section in content, f'missing required section: {section}'
+    for path in PYTHON_FILES:
+        py_compile.compile(str(path), doraise=True)
     print('Skill validation passed')
     print(f'Path: {SKILL}')
     print(f'Chars: {len(content)}')
