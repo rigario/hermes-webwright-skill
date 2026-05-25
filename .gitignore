@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Hermes/Webwright local run artifacts
+.tmp/
+final_runs/
+scratch/
+screenshots/
+*.log
+*.sqlite
+*.db
+
+# Secrets / local environment
+.env
+.env.*
+*.pem
+*.key
+*.crt
+cookies.json
+storage_state.json
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
