@@ -1,5 +1,7 @@
 # Five AI Articles Benchmark Notes — 2026-05-25
 
+
+> Scope note: This was an initial local Hermes benchmark from one environment. The exact timing ratio is directional evidence, not a universal performance guarantee.
 Benchmark task: compare regular browser vs Webwright for finding one AI-related article from five sources: AP News, CNBC, TechCrunch, The Verge, and MIT Technology Review.
 
 ## Observed Result
@@ -8,7 +10,7 @@ Webwright still won, but by less than in the NVIDIA IR/PDF benchmark.
 
 - Regular browser: found all five with manual handling; ~1791s wall-clock including interruptions/recovery.
 - Webwright: final clean run found all five in 99.90s.
-- Ratio: ~17.9x faster.
+- Observed ratio in this local test: ~17.9x faster. Treat this as a directional benchmark, not a universal claim.
 
 ## Final Webwright Articles
 

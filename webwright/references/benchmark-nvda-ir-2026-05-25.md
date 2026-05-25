@@ -1,5 +1,7 @@
 # NVIDIA IR Benchmark Notes — 2026-05-25
 
+
+> Scope note: This was an initial local Hermes benchmark from one environment. The exact timing ratio is directional evidence, not a universal performance guarantee.
 Benchmark task: start from NVIDIA Investor Relations, locate the latest Quarterly Results 10-Q, and extract structured filing metadata.
 
 ## Observed Result
@@ -22,7 +24,7 @@ Final extracted answer:
 - Regular browser full path: ~806s and still needed non-browser extraction to finish.
 - Webwright clean final run: 7.50s.
 - Webwright repeat run: 9.11s.
-- Ratio: ~107.5x faster than full regular browser path; ~47.2x faster than link-only browser path.
+- Observed ratio in this local test: ~107.5x faster than the full regular-browser path; ~47.2x faster than the link-only browser path. Treat this as a directional benchmark, not a universal claim.
 
 ## Pitfalls Found
 

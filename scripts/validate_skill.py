@@ -9,7 +9,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL = ROOT / 'skills/dogfood/webwright/SKILL.md'
+SKILL = ROOT / 'webwright/SKILL.md'
 MAX_DESCRIPTION = 1024
 MAX_CONTENT = 100_000
 REQUIRED_SECTIONS = [

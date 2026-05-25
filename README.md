@@ -5,7 +5,7 @@ A Hermes-native adaptation of the Webwright pattern: use Playwright as an agent 
 This repository contains a single Hermes skill:
 
 ```text
-skills/dogfood/webwright/SKILL.md
+webwright/SKILL.md
 ```
 
 It is designed for Hermes agents that need more reliable web browsing than ephemeral browser snapshots, especially for noisy sites, multi-step extraction, PDFs/reports, QA flows, and workflows that may later become reusable tools.
@@ -39,15 +39,15 @@ Do not use it for quick one-page lookups where standard Hermes browser tools are
 Copy the skill into your Hermes skills directory:
 
 ```bash
-mkdir -p ~/.hermes/skills/dogfood
-cp -R skills/dogfood/webwright ~/.hermes/skills/dogfood/
+mkdir -p ~/.hermes/skills
+cp -R webwright ~/.hermes/skills/
 ```
 
 Or, if you prefer symlinking during development:
 
 ```bash
-mkdir -p ~/.hermes/skills/dogfood
-ln -sfn "$PWD/skills/dogfood/webwright" ~/.hermes/skills/dogfood/webwright
+mkdir -p ~/.hermes/skills
+ln -sfn "$PWD/webwright" ~/.hermes/skills/webwright
 ```
 
 Start a new Hermes session after installing so the skill loader sees it.
@@ -69,17 +69,15 @@ Firefox is the default recommendation because some protected sites reject Playwr
 .
 ├── README.md
 ├── LICENSE
-├── skills/
-│   └── dogfood/
-│       └── webwright/
-│           ├── SKILL.md
-│           └── references/
-│               ├── benchmark-ai-articles-2026-05-25.md
-│               ├── benchmark-nvda-ir-2026-05-25.md
-│               ├── cli-tool-mode.md
-│               ├── hermes-adaptation-smoke-2026-05-25.md
-│               ├── playwright-patterns.md
-│               └── verification-template.md
+├── webwright/
+│   ├── SKILL.md
+│   └── references/
+│       ├── benchmark-ai-articles-2026-05-25.md
+│       ├── benchmark-nvda-ir-2026-05-25.md
+│       ├── cli-tool-mode.md
+│       ├── hermes-adaptation-smoke-2026-05-25.md
+│       ├── playwright-patterns.md
+│       └── verification-template.md
 ├── examples/
 │   ├── lightweight_browse.py
 │   └── final_script_skeleton.py
@@ -87,14 +85,14 @@ Firefox is the default recommendation because some protected sites reject Playwr
     └── validate_skill.py
 ```
 
-## Benchmark Learnings Included
+## Initial Benchmark Learnings Included
 
-The skill includes two benchmark lessons so future agents do not rediscover them:
+The skill includes two early local benchmark notes so future agents do not rediscover the same operational lessons. These are **initial tests from one Hermes environment**, not universal performance guarantees. The exact ratios should be treated as directional evidence that Webwright can materially reduce wall-clock time when a task benefits from deterministic Playwright extraction.
 
-| Task | Regular browser | Webwright | Lesson |
+| Task | Regular browser path | Webwright path | Directional lesson |
 |---|---:|---:|---|
-| NVIDIA IR latest 10-Q PDF extraction | ~806s and still needed non-browser extraction | 7.50s clean final run; 9.11s repeat run | Webwright was ~107.5x faster for report/PDF artifact extraction |
-| Five AI articles from AP/CNBC/TechCrunch/The Verge/MIT Technology Review | ~1791s with manual handling/recovery | 99.90s clean final run | Webwright was ~17.9x faster for noisy multi-source article harvesting |
+| NVIDIA IR latest 10-Q PDF extraction | ~806s and still needed non-browser extraction | 7.50s clean final run; 9.11s repeat run | Very large speedup in this test, mainly because downloading/parsing the PDF crossed a browser-viewer boundary |
+| Five AI articles from AP/CNBC/TechCrunch/The Verge/MIT Technology Review | ~1791s with manual handling/recovery | 99.90s clean final run | Significant speedup in this test, but source-specific filters/fallbacks mattered |
 
 Key takeaways:
 

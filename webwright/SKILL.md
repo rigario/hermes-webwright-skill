@@ -8,7 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [webwright, playwright, browser, qa, automation, extraction, evidence]
-    related_skills: [dogfood, systematic-debugging, test-driven-development]
+    related_skills: [systematic-debugging, test-driven-development]
 ---
 
 # Webwright for Hermes
@@ -54,19 +54,19 @@ Do **not** use Webwright for:
 
 Rule of thumb: **browse with Webwright when it makes the current task cleaner; promote to a final script when future reuse or auditability justifies the ceremony.**
 
-## Efficiency Lessons From Benchmarks
+## Initial Efficiency Lessons From Benchmarks
 
-Observed Hermes benchmarks on 2026-05-25:
+Initial local Hermes benchmarks on 2026-05-25 suggested substantial wall-clock speedups, but these are **directional results from one environment**, not universal performance guarantees. Treat the ratios as evidence that Webwright can be materially faster in the right task class, not as a claim that every task will see the same multiplier.
 
-| Task | Regular browser | Webwright | Lesson |
+| Task | Regular browser path | Webwright path | Directional lesson |
 |---|---:|---:|---|
-| NVIDIA IR latest 10-Q PDF extraction | ~806s and still needed non-browser extraction | 7.50s clean final run; 9.11s repeat run | ~107.5x faster for report/PDF artifact extraction |
-| Five AI articles from AP/CNBC/TechCrunch/The Verge/MIT TR | ~1791s with manual handling/recovery | 99.90s clean final run | ~17.9x faster for noisy multi-source article harvests |
+| NVIDIA IR latest 10-Q PDF extraction | ~806s and still needed non-browser extraction | 7.50s clean final run; 9.11s repeat run | Very large speedup in this test, mainly because PDF download/parsing avoided the browser PDF-viewer limitation |
+| Five AI articles from AP/CNBC/TechCrunch/The Verge/MIT TR | ~1791s with manual handling/recovery | 99.90s clean final run | Significant speedup in this test, but noisy media pages required source-specific filters/fallbacks |
 
 Interpretation:
 
 - Webwright is strongest when the answer crosses a browser boundary: PDFs, downloads, filings, reports, tables, or structured artifacts.
-- Webwright still helps on noisy media pages, but source-specific candidate filters and fallbacks matter.
+- Webwright can help on noisy media pages, but source-specific candidate filters and fallbacks matter.
 - Initial authoring may consume model tokens; deterministic Playwright reruns consume effectively **0 LLM tokens** unless the agent inspects results.
 - Reuse is where token ROI compounds: first pass builds the tool, future runs are local browser/script execution.
 
